@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>打開deeplink
+    </title>
+
+</head>
+<body>
+    <style>
+        #deeplinkinput{
+            width: 100%;
+            height: 200px;
+            
+        }
+        #deeplinkbtn{
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+    </style>
+<div style="display: flex; flex-direction: column;">
+    <textarea id="deeplinkinput"></textarea>
+    <button id="deeplinkbtn">點我跳轉</button> 
+</div>
+
+<script>
+const deeplinkinput = document.getElementById('deeplinkinput');
+const deeplinkbtn = document.querySelector('#deeplinkbtn');
+
+deeplinkbtn.addEventListener('click', function(){
+    const deeplink = deeplinkinput.value.replace(/\s/g, '');
+    if (!deeplink) {
+        alert("請輸入連結");
+        return;
+    }
+    window.open(deeplink, '_blank');
+});
+</script>
+</body>
+</html>
