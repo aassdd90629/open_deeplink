@@ -43,6 +43,7 @@ URLbtn.addEventListener('click', function(){
     const deeplink = restoreURLinput.value.replace(/\s/g, '');
     const encoded = encodeURIComponent(deeplink);
     const jumpURL = `${url}/open_deeplink/open_deeplink.html?deeplink=${encoded}`;
+    // const jumpURL = `${url}/open_deeplink.html?deeplink=${encoded}`;
     console.log(jumpURL)
         navigator.clipboard.writeText(jumpURL)
         .then(() => alert("已複製！"))

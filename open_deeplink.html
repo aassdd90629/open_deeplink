@@ -48,15 +48,15 @@
 
         const deeplinkBox = document.getElementById("deeplinkBox");
         const openBtn = document.getElementById("openBtn");
-        window.location.href = deeplinkParam;
-
+        // window.location.href = deeplinkParam;
+        
         if (!deeplinkParam) {
             deeplinkBox.value = "❌ 錯誤：網址沒有帶 deeplink 參數";
             openBtn.disabled = true;
         } else {
             deeplinkBox.value = deeplinkParam;
-
             openBtn.addEventListener("click", function () {
+                // console.log(deeplinkParam);
                 window.location.href = deeplinkParam;
             });
         }
