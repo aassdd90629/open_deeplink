@@ -38,9 +38,8 @@ console.log(url);
 const restoreURLinput = document.getElementById('restoreURL');
 const URLbtn = document.getElementById('URLbtn');
 URLbtn.addEventListener('click', function(){
-    // const url = window.location.origin;
-    // console.log(url);
-    const urlParams = new URLSearchParams(window.location.search);
+    const url = window.location.origin;
+    console.log(url);
     const deeplink = restoreURLinput.value.replace(/\s/g, '');
     const encoded = encodeURIComponent(deeplink);
     const jumpURL = `${url}/open_deeplink.html?deeplink=${encoded}`;

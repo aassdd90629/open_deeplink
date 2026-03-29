@@ -27,17 +27,16 @@
     </style>
 <div class="group">
     等待跳轉中....
-    <input type="text" id="input">
 </div>
 
 
 <script>
-    const input = document.getElementById('input').value;
+
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const getdeeplink = urlParams.get('deeplink');
-    console.log(getdeeplink)
-    window.location.href = getdeeplink;
+    console.log(decodeURIComponent(getdeeplink))
+    window.location.href = decodeURIComponent(getdeeplink);
 };
 </script>
 </body>
