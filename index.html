@@ -7,33 +7,47 @@
 </head>
 <body>
     <style>
-        #deeplinkinput{
-            width: 100%;
+        .group{
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .input{
+            width: 80%;
             height: 200px;
+            margin: 0 auto;
             
         }
-        #deeplinkbtn{
-            width: 80px;
+        .btn{
+            width: 100px;
             height: 80px;
             margin: 0 auto;
         }
     </style>
-<div style="display: flex; flex-direction: column;">
-    <textarea id="deeplinkinput"></textarea>
-    <button id="deeplinkbtn">點我跳轉</button> 
+
+<div class="group">
+    <textarea class="input" id="restoreURL"></textarea>
+    <button class="btn" id="URLbtn">點我複製網址</button> 
 </div>
 
 <script>
-const deeplinkinput = document.getElementById('deeplinkinput');
-const deeplinkbtn = document.querySelector('#deeplinkbtn');
+const url = window.location.origin;
+console.log(url);
 
-deeplinkbtn.addEventListener('click', function(){
-    const deeplink = deeplinkinput.value.replace(/\s/g, '');
-    if (!deeplink) {
-        alert("請輸入連結");
-        return;
-    }
-    window.open(deeplink, '_blank');
+const restoreURLinput = document.getElementById('restoreURL');
+const URLbtn = document.getElementById('URLbtn');
+URLbtn.addEventListener('click', function(){
+    // const url = window.location.origin;
+    // console.log(url);
+    const urlParams = new URLSearchParams(window.location.search);
+    const deeplink = restoreURLinput.value.replace(/\s/g, '');
+    const encoded = encodeURIComponent(deeplink);
+    const jumpURL = `${url}/open_deeplink.html?deeplink=${encoded}`;
+    console.log(jumpURL)
+        navigator.clipboard.writeText(jumpURL)
+        .then(() => alert("已複製！"))
+        .catch(() => alert("複製失敗"));
 });
 </script>
 </body>

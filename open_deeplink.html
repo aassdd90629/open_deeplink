@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>打開deeplink
+    </title>
+
+</head>
+<body>
+    <style>
+        .group{
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .input{
+            width: 80%;
+            height: 200px;
+            margin: 0 auto;
+            
+        }
+        .btn{
+            width: 100px;
+            height: 80px;
+            margin: 0 auto;
+        }
+    </style>
+<div class="group">
+    等待跳轉中....
+</div>
+
+
+<script>
+window.onload = function() {
+const urlParams = new URLSearchParams(window.location.search);
+const getdeeplink = urlParams.get('deeplink');
+console.log(getdeeplink)
+window.open(getdeeplink, '_blank');
+};
+</script>
+</body>
+</html>
