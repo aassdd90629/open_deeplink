@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>打開 Deeplink</title>
+</head>
+
+<body>
+    <style>
+        .group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 20px;
+        }
+
+        .input {
+            width: 90%;
+            height: 200px;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 160px;
+            height: 60px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="group">
+        <textarea class="input" id="deeplinkBox" readonly></textarea>
+
+        <button class="btn" id="openBtn">點我開啟 APP</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const deeplinkParam = urlParams.get("deeplink");
+
+        const deeplinkBox = document.getElementById("deeplinkBox");
+        const openBtn = document.getElementById("openBtn");
+        // window.location.href = deeplinkParam;
+        
+        if (!deeplinkParam) {
+            deeplinkBox.value = "❌ 錯誤：網址沒有帶 deeplink 參數";
+            openBtn.disabled = true;
+        } else {
+            deeplinkBox.value = deeplinkParam;
+            openBtn.addEventListener("click", function () {
+                // console.log(deeplinkParam);
+                window.location.href = deeplinkParam;
+            });
+        }
+    </script>
+</body>
+</html>

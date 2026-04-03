@@ -28,23 +28,34 @@
 
 <div class="group">
     <textarea class="input" id="restoreURL"></textarea>
-    <button class="btn" id="URLbtn">點我複製網址</button> 
+    <button class="btn" id="URLbtn">點我複製自動跳轉網址</button> 
+    <button class="btn" id="handleURLbtn">點我複製手動跳轉網址</button> 
 </div>
 
 <script>
 const url = window.location.origin;
-console.log(url);
 
 const restoreURLinput = document.getElementById('restoreURL');
 const URLbtn = document.getElementById('URLbtn');
+const handleURLbtn = document.getElementById('handleURLbtn');
 URLbtn.addEventListener('click', function(){
     const url = window.location.origin;
-    console.log(url);
     const deeplink = restoreURLinput.value.replace(/\s/g, '');
     const encoded = encodeURIComponent(deeplink);
-    const jumpURL = `${url}/open_deeplink/open_deeplink.html?deeplink=${encoded}`;
+    const jumpURL = `${url}/open_deeplink/autoopen_deeplink.html?deeplink=${encoded}`;
     // const jumpURL = `${url}/open_deeplink.html?deeplink=${encoded}`;
-    console.log(jumpURL)
+    console.log(encoded)
+        navigator.clipboard.writeText(jumpURL)
+        .then(() => alert("已複製！"))
+        .catch(() => alert("複製失敗"));
+});
+handleURLbtn.addEventListener('click', function(){
+    const url = window.location.origin;
+    const deeplink = restoreURLinput.value.replace(/\s/g, '');
+    const encoded = encodeURIComponent(deeplink);
+    const jumpURL = `${url}/open_deeplink/btnopen_deeplink.html?deeplink=${encoded}`;
+    // const jumpURL = `${url}/open_deeplink.html?deeplink=${encoded}`;
+    console.log(encoded)
         navigator.clipboard.writeText(jumpURL)
         .then(() => alert("已複製！"))
         .catch(() => alert("複製失敗"));
