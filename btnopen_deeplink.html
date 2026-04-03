@@ -43,22 +43,30 @@
     </div>
 
     <script>
+        // 從 URL 取得 Base64 編碼的 token
         const urlParams = new URLSearchParams(window.location.search);
-        const deeplinkParam = urlParams.get("deeplink");
+        const encodedToken = urlParams.get("token");
 
         const deeplinkBox = document.getElementById("deeplinkBox");
         const openBtn = document.getElementById("openBtn");
-        // window.location.href = deeplinkParam;
         
-        if (!deeplinkParam) {
-            deeplinkBox.value = "❌ 錯誤：網址沒有帶 deeplink 參數";
+        let deeplinkParam = null;
+        
+        if (!encodedToken) {
+            deeplinkBox.value = "❌ 錯誤：找不到 token";
             openBtn.disabled = true;
         } else {
-            deeplinkBox.value = deeplinkParam;
-            openBtn.addEventListener("click", function () {
-                // console.log(deeplinkParam);
-                window.location.href = deeplinkParam;
-            });
+            try {
+                // Base64 解碼
+                deeplinkParam = atob(encodedToken);
+                deeplinkBox.value = deeplinkParam;
+                openBtn.addEventListener("click", function () {
+                    window.location.href = deeplinkParam;
+                });
+            } catch (e) {
+                deeplinkBox.value = "❌ 錯誤：token 無效";
+                openBtn.disabled = true;
+            }
         }
     </script>
 </body>

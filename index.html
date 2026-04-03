@@ -38,25 +38,33 @@ const url = window.location.origin;
 const restoreURLinput = document.getElementById('restoreURL');
 const URLbtn = document.getElementById('URLbtn');
 const handleURLbtn = document.getElementById('handleURLbtn');
+
 URLbtn.addEventListener('click', function(){
-    const url = window.location.origin;
     const deeplink = restoreURLinput.value.replace(/\s/g, '');
-    const encoded = encodeURIComponent(deeplink);
-    const jumpURL = `${url}/open_deeplink/autoopen_deeplink.html?deeplink=${encoded}`;
-    // const jumpURL = `${url}/open_deeplink.html?deeplink=${encoded}`;
-    console.log(encoded)
-        navigator.clipboard.writeText(jumpURL)
+    if (!deeplink) {
+        alert("請輸入 deeplink");
+        return;
+    }
+    // Base64 編碼
+    const encoded = btoa(deeplink);
+    // 複製 URL
+    const jumpURL = `${url}/open_deeplink/autoopen_deeplink.html?token=${encoded}`;
+    navigator.clipboard.writeText(jumpURL)
         .then(() => alert("已複製！"))
         .catch(() => alert("複製失敗"));
 });
+
 handleURLbtn.addEventListener('click', function(){
-    const url = window.location.origin;
     const deeplink = restoreURLinput.value.replace(/\s/g, '');
-    const encoded = encodeURIComponent(deeplink);
-    const jumpURL = `${url}/open_deeplink/btnopen_deeplink.html?deeplink=${encoded}`;
-    // const jumpURL = `${url}/open_deeplink.html?deeplink=${encoded}`;
-    console.log(encoded)
-        navigator.clipboard.writeText(jumpURL)
+    if (!deeplink) {
+        alert("請輸入 deeplink");
+        return;
+    }
+    // Base64 編碼
+    const encoded = btoa(deeplink);
+    // 複製 URL
+    const jumpURL = `${url}/open_deeplink/btnopen_deeplink.html?token=${encoded}`;
+    navigator.clipboard.writeText(jumpURL)
         .then(() => alert("已複製！"))
         .catch(() => alert("複製失敗"));
 });
